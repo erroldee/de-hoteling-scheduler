@@ -1,0 +1,21 @@
+{
+    "name": "rx-hoteling-scheduler",
+    "version": "1.0.0",
+    "description": "Hoteling Scheduler for OptumRx PH Team",
+    "main": "pages/index.js",
+    "scripts": {
+        "start": "npm run dev",
+        "dev": "node_modules/.bin/next",
+        "prod": "node_modules/.bin/next start -p $PORT",
+        "build": "node_modules/.bin/next build"
+    },
+    "author": "Errol Dee",
+    "license": "ISC",
+    "dependencies": {
+        "firebase": "^6.3.0",
+        "moment": "^2.24.0",
+        "next": "^9.0.1",
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6"
+    }
+}
