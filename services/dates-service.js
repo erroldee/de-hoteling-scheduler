@@ -1,4 +1,4 @@
-import moment from 'moment';
+import moment from "moment";
 import { CONSTANTS } from "../Constants";
 
 const DateService = (schedulerStartDate, date, holidays, variables) => {
@@ -42,7 +42,6 @@ const DateService = (schedulerStartDate, date, holidays, variables) => {
     };
 
     const prepHolidays = () => {
-        console.log(schedulerStartDate);
         const futureDate = moment(currentDate).add('days', CONSTANTS.DAYS_TO_DISPLAY + 1);
         let checkYear = schedulerStartDate.year();
 

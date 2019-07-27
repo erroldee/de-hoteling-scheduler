@@ -4,7 +4,7 @@
     "description": "Hoteling Scheduler for OptumRx PH Team",
     "main": "pages/index.js",
     "scripts": {
-        "start": "npm run dev",
+        "start": "npm run prod",
         "dev": "node_modules/.bin/next",
         "prod": "node_modules/.bin/next start -p $PORT",
         "build": "node_modules/.bin/next build"
@@ -12,10 +12,15 @@
     "author": "Errol Dee",
     "license": "ISC",
     "dependencies": {
+        "@material-ui/core": "^4.2.1",
+        "@material-ui/icons": "^4.2.1",
+        "@material-ui/styles": "^4.2.1",
+        "@zeit/webpack-asset-relocator-loader": "^0.5.8",
         "firebase": "^6.3.0",
         "moment": "^2.24.0",
-        "next": "^9.0.1",
+        "next": "^8",
         "react": "^16.8.6",
-        "react-dom": "^16.8.6"
+        "react-dom": "^16.8.6",
+        "typeface-roboto": "0.0.75"
     }
 }
