@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 import firebase from "../services/firebase-service";
 import moment from "moment";
@@ -15,8 +15,8 @@ class Schedules extends Component {
     db = null;
 
     state = {
-        currentDate: moment(),
-        schedulerStart: moment(),
+        currentDate: ManipulationService.getDateToday(),
+        schedulerStart: ManipulationService.getDateToday(),
         currentDiffCounter: 0,
         displayMembers: [],
         frequency: 1,
@@ -27,8 +27,6 @@ class Schedules extends Component {
     };
 
     componentDidMount() {
-        const self = this;
-
         this.db = firebase.firestore();
         this.getScheduleData();
     }
@@ -48,8 +46,16 @@ class Schedules extends Component {
         this.db.collection("config").doc("scheduler-start")
             .onSnapshot({ includeMetadataChanges: true }, doc => {
                 if (doc.exists) {
+                    const startDate = moment(doc.data()[self.site], "MM-DD-YYYY");
+                    let currentDate = ManipulationService.getDateToday();
+
+                    if (ManipulationService.getDiffDays(ManipulationService.getDateToday(), startDate) > 0) {
+                        currentDate = startDate;
+                    }
+
                     self.setState({
-                        schedulerStart: moment(doc.data()[self.site])
+                        currentDate,
+                        schedulerStart: startDate
                     }, self.setNewDate);
                 }
             });
@@ -106,7 +112,11 @@ class Schedules extends Component {
         while(counter <= CONSTANTS.DAYS_TO_DISPLAY) {
             const currentCount = currentDiff + counter;
             const date = this.dateService.getFutureDay(currentCount);
-            const today = !moment().diff(date);
+            const today = !this.dateService.getDiffDays(
+                ManipulationService.getDateToday(),
+                date
+            );
+
             const listOfHolidays = this.dateService.getCompleteHolidayList();
 
             if ((listOfHolidays.findIndex(moment => moment.isSame(date)) === -1) &&
@@ -187,11 +197,13 @@ class Schedules extends Component {
     changeDate = (event) => {
         let selectedDate = moment(event.target.value, "YYYY-MM-DD");
 
-        if (this.state.schedulerStart.diff(selectedDate) >= 0) {
-            selectedDate = this.state.schedulerStart;
+        if (!selectedDate.isValid()) {
+            selectedDate = ManipulationService.getDateToday();
         }
 
-        console.log(selectedDate);
+        if (ManipulationService.getDiffDays(this.state.schedulerStart, selectedDate) < 0) {
+            selectedDate = moment(this.state.schedulerStart);
+        }
 
         this.setState({
             currentDate: selectedDate

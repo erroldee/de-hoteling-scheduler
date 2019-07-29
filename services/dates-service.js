@@ -9,11 +9,11 @@ const DateService = (schedulerStartDate, date, holidays, variables) => {
     const completeHolidayList = [];
 
     const getSchedulerStart = () => {
-        return schedulerStart;
+        return moment(schedulerStart);
     };
 
     const getCurrentDay = () => {
-        return currentDate;
+        return moment(currentDate);
     };
 
     const getFutureDay = (daysFromCurrent) => {
@@ -28,10 +28,11 @@ const DateService = (schedulerStartDate, date, holidays, variables) => {
 
     const getNumberOfHolidays = (futureDate) => {
         const plusOneDate = futureDate;
+        const startDate = moment(schedulerStart).subtract('days', 1);
         let holidayCount = 0;
 
         completeHolidayList.forEach(date => {
-            if (date.isBetween(schedulerStart, plusOneDate)) {
+            if (date.isBetween(startDate, plusOneDate)) {
                 if (!(date.day() === 6 || date.day() === 0)) {
                     holidayCount++;
                 }
@@ -43,12 +44,13 @@ const DateService = (schedulerStartDate, date, holidays, variables) => {
 
     const prepHolidays = () => {
         const futureDate = moment(currentDate).add('days', CONSTANTS.DAYS_TO_DISPLAY + 1);
-        let checkYear = schedulerStartDate.year();
+        const startDate = moment(schedulerStart).subtract('days', 1);
+        let checkYear = schedulerStart.year();
 
         variableHolidays.forEach(date => {
             const holiday = moment(date, "MM-DD-YYYY");
 
-            if (holiday.isBetween(schedulerStart, futureDate)) {
+            if (holiday.isBetween(startDate, futureDate)) {
                 completeHolidayList.push(holiday);
             }
         });
@@ -57,7 +59,7 @@ const DateService = (schedulerStartDate, date, holidays, variables) => {
             standardHolidays.forEach(date => {
                 const holiday = moment(date + "-" + checkYear, "MM-DD-YYYY");
 
-                if (holiday.isBetween(schedulerStart, futureDate)) {
+                if (holiday.isBetween(startDate, futureDate)) {
                     completeHolidayList.push(holiday);
                 }
             });

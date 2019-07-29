@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export const ManipulationService = {
     capitalize: work => {
         return work.charAt(0).toUpperCase() + work.slice(1);
@@ -13,5 +15,15 @@ export const ManipulationService = {
         });
 
         return newArray;
+    },
+
+    getDiffDays: (d1, d2) => {
+        let diff_ms = d2.diff(d1);
+
+        return Math.floor(moment.duration(diff_ms).asDays());
+    },
+
+    getDateToday: () => {
+        return moment(moment().format("MM-DD-YYYY"), "MM-DD-YYYY");
     }
 };

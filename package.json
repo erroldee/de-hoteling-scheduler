@@ -1,7 +1,7 @@
 {
-    "name": "rx-hoteling-scheduler",
+    "name": "de-hoteling-scheduler",
     "version": "1.0.0",
-    "description": "Hoteling Scheduler for OptumRx PH Team",
+    "description": "Hoteling Scheduler for Digital Experience Team",
     "main": "pages/index.js",
     "scripts": {
         "start": "npm run prod",

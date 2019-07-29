@@ -18,7 +18,6 @@ class Site extends Component {
     classes = this.props.classes;
 
     componentDidMount() {
-        console.log('test');
         const { site } = this.props.query;
 
         const db = firebase.firestore();

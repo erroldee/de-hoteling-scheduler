@@ -1,18 +1,15 @@
 export const CONSTANTS = {
     "DAYS_TO_DISPLAY": 30,
     "FIREBASE_CONFIG": {
-        apiKey: "AIzaSyClvxhPdK49Oz75qtCwFS4yEHM_R3LPOuw",
-        authDomain: "rx-hoteling-scheduler.firebaseapp.com",
-        databaseURL: "https://rx-hoteling-scheduler.firebaseio.com",
-        projectId: "rx-hoteling-scheduler",
-        storageBucket: "rx-hoteling-scheduler.appspot.com",
-        messagingSenderId: "541562303351",
-        appId: "1:541562303351:web:703a09e48238240f"
+        apiKey: "AIzaSyDuHSk5f3vHLt6r8g_WCjE58cwqe0Wh4vE",
+        authDomain: "de-hoteling-scheduler.firebaseapp.com",
+        databaseURL: "https://de-hoteling-scheduler.firebaseio.com",
+        projectId: "de-hoteling-scheduler",
+        storageBucket: "de-hoteling-scheduler.appspot.com",
+        messagingSenderId: "612858735219",
+        appId: "1:612858735219:web:ad05fce84f27ce0d"
     },
     avatarColors: [
-        "#5A8770",
-        "#B2B7BB",
-        "#6FA9AB",
         "#F5AF29",
         "#0088B9",
         "#F18636",
@@ -35,6 +32,9 @@ export const CONSTANTS = {
         "#9C8AB4",
         "#5A8770",
         "#EEB424",
-        "#407887"
+        "#407887",
+        "#5A8770",
+        "#B2B7BB",
+        "#6FA9AB"
     ]
 };
